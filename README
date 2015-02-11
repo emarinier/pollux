@@ -24,10 +24,10 @@ produced by second-generation sequencing technologies.
 
 -- Release --
 
-Pollux 1.00
-4 November 2014
+Pollux 1.01
+11 February 2015
 
-This is the initial release of Pollux.
+Added compability with older versions of the GCC compiler.
 
 -- Requirements --
 
@@ -49,6 +49,12 @@ Simple correction:
 
 Brendan McConkey: mcconkey@uwaterloo.ca
 Eric Marinier: eric.marinier@phac-aspc.gc.ca
+
+-- Publication --
+
+Marinier, Eric, Daniel G. Brown, and Brendan J. McConkey. 
+"Pollux: platform independent error correction of single and mixed genomes."
+BMC Bioinformatics 16.1 (2015): 10.
 
 -- Credits --
 

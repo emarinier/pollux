@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#include "Globals.h"
 #include "Reads.h"
 #include "KMerHashTable.h"
 #include "Utility.h"
@@ -28,8 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef	__cplusplus
 extern "C" {
 #endif
-    
-typedef struct Correction Correction;
+
 typedef bool (*CorrectionFunction)(struct read* read, Correction* correction);
 
 struct Correction

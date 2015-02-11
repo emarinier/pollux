@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern "C" {
 #endif
 
+typedef struct Correction Correction;
+
 // Deprecated:
 enum SEQUENCING_TECHNOLOGY
 {

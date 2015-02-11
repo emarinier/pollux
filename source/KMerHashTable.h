@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+#include "Globals.h"
 #include "hash-table.h"
 
 #ifndef KMERHASHTABLE_H
@@ -26,8 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef	__cplusplus
 extern "C" {
 #endif
-    
-typedef struct Correction Correction;
     
 typedef struct
 {
