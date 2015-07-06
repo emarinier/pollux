@@ -18,9 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "Globals.h"
 #include "Utility.h"
 #include "ErrorProcessing.h"
@@ -29,7 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ErrorCorrection.h"
 #include "Reads.h"
 #include "Correction.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <libgen.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 unsigned int KMER_SIZE = 31;
 
@@ -105,6 +109,19 @@ void hashReads(Correction* correction)
         preprocessKMers(kmers, correction);
         printf("Finished preprocessing k-mers!\n\n");
     }
+}
+
+void checkDirectoryExistsAndCreate(char* directory)
+{
+	const int MISSING = -1;
+
+	struct stat st = {0};
+
+	if (stat(directory, &st) == MISSING) 
+	{
+		printf("Creating directory: %s\n", directory);
+		mkdir(directory, 0700);
+	}
 }
 
 void executePairedCorrection(Correction* correction,
@@ -402,14 +419,17 @@ Correction* preprocessing(int numInputFiles, char* inputFileNames, char* outputD
 {
     unsigned int LOW_COVERAGE_THRESHOLD_DEFAULT = 3;
 
-    // Data Structures:
-    KMerHashTable* kmers = newKMerHashTable();
-    Reads** reads = (Reads**)malloc(sizeof(Reads*) * numInputFiles);
-    Correction* correction = (Correction*)malloc(sizeof(Correction));
-    
-    // CREATE READS:      
-    printf("Creating read objects...\n");    
-    for(int i = 0; i < numInputFiles; i++)
+	// DATA STRUCTURES:
+	KMerHashTable* kmers = newKMerHashTable();
+	Reads** reads = (Reads**)malloc(sizeof(Reads*) * numInputFiles);
+	Correction* correction = (Correction*)malloc(sizeof(Correction));
+
+	// OUTPUT DIRECTORY:
+	checkDirectoryExistsAndCreate(outputDirectory);
+
+	// CREATE READS:      
+	printf("Creating read objects...\n");    
+	for(int i = 0; i < numInputFiles; i++)
     {
         char* inputFileName = &(inputFileNames[i * 200]);
         printf("Reading file: %s\n", inputFileName);

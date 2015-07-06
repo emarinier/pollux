@@ -128,7 +128,7 @@ int main(int argc, char**argv)
     bool filtering = true;
     
     printf("\n");
-    printf("Pollux 1.00\n");
+    printf("Pollux 1.0.2\n");
     printf("Source compiled on %s at %s.\n", __DATE__, __TIME__);
     printf("\n");
     
